@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "node back-end/server/app.js"
+    "test": "node codes/back-end/server/app.js",
+    "start": "node codes/back-end/server/app.js",
+    "con": "node codes/back-end/database/config.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +22,10 @@
   "bugs": {
     "url": "https://github.com/jdeuud/publicDatabase/issues"
   },
-  "homepage": "https://github.com/jdeuud/publicDatabase#readme"
+  "homepage": "https://github.com/jdeuud/publicDatabase#readme",
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.4"
+  }
 }
