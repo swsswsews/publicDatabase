@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+ <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Register</title>
+        <link rel="stylesheet" href="../css/register.css">
+        <script src="../js/register.js" defer></script>
+    </head>
+    <body>
+        <!--header nav bar-->
+        <header>
+            <nav>
+                <a href="../html/login.html">Login</a>
+            </nav>
+        </header>
+
+        <!--main content register form-->
+        <main>
+            <h1>Register</h1>
+            <form id="register-form" action="publicDatabase/user/register" method="POST">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="databaseName">Database Name:</label>
+                <input type="text" id="databaseName" name="databaseName" required>
+
+                <button type="submit">Register</button>
+            </form>
+        </main>
+
+        <!--footer-->
+        <footer>
+            <p>thank you for visiting my website ;)</p>
+        </footer>
+    </body>
+
+ </html>
