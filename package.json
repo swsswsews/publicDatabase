@@ -1,0 +1,24 @@
+{
+  "name": "publicdatabase",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "node back-end/server/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdeuud/publicDatabase.git"
+  },
+  "keywords": [
+    "rent",
+    "public",
+    "database"
+  ],
+  "author": "cc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdeuud/publicDatabase/issues"
+  },
+  "homepage": "https://github.com/jdeuud/publicDatabase#readme"
+}
