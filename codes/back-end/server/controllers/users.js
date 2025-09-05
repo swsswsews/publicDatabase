@@ -2,11 +2,11 @@
 const models=require('../../database/model/users')
 
 //register
-module.exports.registerUser=async (req, res, next)=>{
+module.exports.registerUser=(req, res, next)=>{
     console.log("controller registerUser acativated")
     //input
     const input=req.body
-    if(!input.username || !input.password || !input.databaseName){
+    if(!input.username || !input.password){
         console.log("user route: registerUser route:\n"+"status: fail"+"\n"+"error: invalid input")
         res.status(400).send("invalid input").end()
         
@@ -98,7 +98,7 @@ module.exports.deleteUser=(req, res, next)=>{
 module.exports.updateUser=(req, res, next)=>{
     //input
     const input=req.body
-    if(!input.username || !input.password || !input.newPassword){
+    if(!input.username || !input.password || !input.newPassword || !input.databaseId){
         console.log("user route: updateUser route:\n"+"status: fail"+"\n"+"error: invalid input")
         res.status(400).send("invalid input").end()
         return

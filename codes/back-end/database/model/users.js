@@ -4,7 +4,7 @@ const pool=require("../pool")
 /*models */
 //register
 module.exports.registerUser=(input, callback)=>{
-    const sql="INSERT INTO users (username, password, databaseName) VALUES (?, ?, ?)"
+    const sql="INSERT INTO users (name, password) VALUES (?, ?)"
     const arr=[input.username, input.password, input.databaseName]
     pool.query(sql, arr, (err, result)=>{
         if(err){
@@ -17,7 +17,7 @@ module.exports.registerUser=(input, callback)=>{
 
 //login
 module.exports.loginUser=(input, callback)=>{
-    const sql="SELECT * FROM users WHERE username=? AND password=?"
+    const sql="SELECT * FROM users WHERE name=? AND password=?"
     const arr=[input.username, input.password]
     pool.query(sql, arr, (err, result)=>{
         if(err){
@@ -30,7 +30,7 @@ module.exports.loginUser=(input, callback)=>{
 
 //delete
 module.exports.deleteUser=(input, callback)=>{
-    const sql="DELETE FROM users WHERE username=? AND password=?"
+    const sql="DELETE FROM users WHERE name=? AND password=?"
     const arr=[input.username, input.password]
     pool.query(sql, arr, (err, result)=>{
         if(err){
@@ -43,8 +43,8 @@ module.exports.deleteUser=(input, callback)=>{
 
 //update
 module.exports.updateUser=(input, callback)=>{
-    const sql="UPDATE users SET password=?, databaseName=? WHERE username=?"
-    const arr=[input.newPassword, input.databaseName, input.username]
+    const sql="UPDATE users SET password=?, database_ids=? WHERE name=? && password=?"
+    const arr=[input.newPassword, input.databaseId, input.username, input.password]
     pool.query(sql, arr, (err, result)=>{
         if(err){
             callback(err, null)
