@@ -3,6 +3,7 @@ const models=require('../../database/model/users')
 
 //register
 module.exports.registerUser=async (req, res, next)=>{
+    console.log("controller registerUser acativated")
     //input
     const input=req.body
     if(!input.username || !input.password || !input.databaseName){
@@ -19,7 +20,7 @@ module.exports.registerUser=async (req, res, next)=>{
             return
         }else{
             console.log("user route: registerUser route:\n"+"status: success"+"\n"+"output: "+output)
-            res.status(200).sendFile("../../../../front-end/html/profile.html").end()
+            
             return
         }
     }
@@ -56,7 +57,6 @@ module.exports.loginUser=(req, res, next)=>{
                         "status: success"+"\n"+
                         "output: "+output
                        )
-            res.status(200).sendFile("../../../../front-end/html/profile.html").end()
             return
         }
     }
@@ -83,7 +83,7 @@ module.exports.deleteUser=(req, res, next)=>{
             return
         }else{
             console.log("user route: deleteUser route:\n"+"status: success"+"\n"+"output: "+output)
-            res.status(200).sendFile("../../../../front-end/html/register.html").end()
+
             return
         }
     }
@@ -110,7 +110,6 @@ module.exports.updateUser=(req, res, next)=>{
             return
         }else{
             console.log("user route: updateUser route:\n"+"status: success"+"\n"+"output: "+output)
-            res.status(200).sendFile("../../../../front-end/html/profile.html").end()
             return
         }
     }
