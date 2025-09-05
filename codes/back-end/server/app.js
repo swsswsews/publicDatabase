@@ -13,4 +13,4 @@ const routes=require("./routes/mainRoute")
 app.use("/publicDatabase", routes)
 
 //listener
-listener.listen()
+listener.listen(app)

@@ -34,7 +34,7 @@ module.exports.registerUser=async (req, res, next)=>{
 module.exports.loginUser=(req, res, next)=>{
     //input
     const input=req.body
-    if(!input.name || !input.password){
+    if(!input.username || !input.password){
         console.log("user route: loginUser route: \n"+
                     "status: "+"fail"+"\n"+
                     "error: invalid input"
