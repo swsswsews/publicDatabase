@@ -9,6 +9,7 @@ module.exports.registerUser=async (req, res, next)=>{
     if(!input.username || !input.password || !input.databaseName){
         console.log("user route: registerUser route:\n"+"status: fail"+"\n"+"error: invalid input")
         res.status(400).send("invalid input").end()
+        
         return
     }
 
@@ -20,7 +21,7 @@ module.exports.registerUser=async (req, res, next)=>{
             return
         }else{
             console.log("user route: registerUser route:\n"+"status: success"+"\n"+"output: "+output)
-            
+            res.status(200).send("register success").end()
             return
         }
     }
@@ -57,6 +58,7 @@ module.exports.loginUser=(req, res, next)=>{
                         "status: success"+"\n"+
                         "output: "+output
                        )
+            res.status(200).send("login success").end()
             return
         }
     }
@@ -83,7 +85,7 @@ module.exports.deleteUser=(req, res, next)=>{
             return
         }else{
             console.log("user route: deleteUser route:\n"+"status: success"+"\n"+"output: "+output)
-
+            res.status(200).send("delete success").end()
             return
         }
     }
@@ -110,6 +112,7 @@ module.exports.updateUser=(req, res, next)=>{
             return
         }else{
             console.log("user route: updateUser route:\n"+"status: success"+"\n"+"output: "+output)
+            res.status(200).send("update success").end()
             return
         }
     }
