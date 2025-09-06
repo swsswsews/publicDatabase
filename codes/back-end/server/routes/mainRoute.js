@@ -9,6 +9,8 @@ const userRoutes=require("../routes/userRoutes/routes")
 router.use("/user", userRoutes)
 
 //database
+const databaseInfoRoutes=require("../routes/databaseInfoRoutes/routes")
+router.use("/databaseInfo", databaseInfoRoutes)
 /*======*/
 
 //export
