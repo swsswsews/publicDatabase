@@ -16,7 +16,7 @@ module.exports.registerUser=(req, res, next)=>{
     //callback
     const callback=(err, output)=>{
         if(err){
-            console.log("user route: registerUser route:\n"+"status: fail"+"\n"+"error: "+err)
+            console.log("user route: registerUser route:\n"+"status: fail"+"\n"+"error: SQL error: \n"+err)
             res.status(500).send("register fail due to sql error").end()
             return
         }else{
@@ -48,7 +48,7 @@ module.exports.loginUser=(req, res, next)=>{
         if(err){
             console.log("user route: loginUser route: \n"+
                         "status: fail"+"\n"+
-                        "error: "+err
+                        "error: SQL error: \n"+err
                        )
             
             res.status(500).send("login fail due to sql error, please check if username and password are correct").end()
@@ -71,7 +71,7 @@ module.exports.loginUser=(req, res, next)=>{
 module.exports.deleteUser=(req, res, next)=>{
     //input
     const input=req.body
-    if(!input.username || !input.password){
+    if(!input.id || !input.secureCode){
         console.log("user route: deleteUser route:\n"+"status: fail"+"\n"+"error: invalid input")
         res.status(400).send("invalid input").end()
         return
@@ -80,7 +80,7 @@ module.exports.deleteUser=(req, res, next)=>{
     //callback
     const callback=(err, output)=>{
         if(err){
-            console.log("user route: deleteUser route:\n"+"status: fail"+"\n"+"error: "+err)
+            console.log("user route: deleteUser route:\n"+"status: fail"+"\n"+"error: SQL error: \n"+err)
             res.status(500).send("delete fail due to sql error").end()
             return
         }else{
@@ -98,7 +98,7 @@ module.exports.deleteUser=(req, res, next)=>{
 module.exports.updateUser=(req, res, next)=>{
     //input
     const input=req.body
-    if(!input.username || !input.password || !input.newPassword || !input.databaseId){
+    if(!input.username || !input.id || !input.newPassword || !input.databaseId || !input.secureCode){
         console.log("user route: updateUser route:\n"+"status: fail"+"\n"+"error: invalid input")
         res.status(400).send("invalid input").end()
         return
@@ -107,7 +107,7 @@ module.exports.updateUser=(req, res, next)=>{
     //callback
     const callback=(err, output)=>{
         if(err){
-            console.log("user route: updateUser route:\n"+"status: fail"+"\n"+"error: "+err)
+            console.log("user route: updateUser route:\n"+"status: fail"+"\n"+"error: SQL error: \n"+err)
             res.status(500).send("update fail due to sql error").end()
             return
         }else{
