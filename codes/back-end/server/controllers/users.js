@@ -71,7 +71,7 @@ module.exports.loginUser=(req, res, next)=>{
 module.exports.deleteUser=(req, res, next)=>{
     //input
     const input=req.body
-    if(!input.id || !input.secureCode){
+    if(!input.secureCode){
         console.log("user route: deleteUser route:\n"+"status: fail"+"\n"+"error: invalid input")
         res.status(400).send("invalid input").end()
         return
@@ -98,7 +98,7 @@ module.exports.deleteUser=(req, res, next)=>{
 module.exports.updateUser=(req, res, next)=>{
     //input
     const input=req.body
-    if(!input.username || !input.id || !input.newPassword || !input.databaseId || !input.secureCode){
+    if(!input.username || !input.newPassword || !input.databaseId || !input.secureCode){
         console.log("user route: updateUser route:\n"+"status: fail"+"\n"+"error: invalid input")
         res.status(400).send("invalid input").end()
         return
