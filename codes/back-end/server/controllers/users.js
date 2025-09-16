@@ -15,9 +15,15 @@ module.exports.registerUser=(req, res)=>{
     const callback=(err, result)=>{
         if(err){
             console.log("user route: register user: error in saving user")
-            return res.status(500).json({ error: "SQL Error in saving user" })
+            res.status(500).json({ error: "SQL Error in saving user" })
+            return
+        }else{
+            //success
+            console.log("user route: register user: user saved")
+            res.status(200).json({ message: "User registered successfully", userId: result.insertId })
+            return
         }
-}
+    }
 
     //sql
     User.registerUser(username, password, callback)
