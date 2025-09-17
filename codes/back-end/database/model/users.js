@@ -27,8 +27,8 @@ module.exports.deleteUser = (userId, callback) => {
 }
 
 //update
-module.exports.updateUser = (newUsername, newPassword, databaseIds, callback) => {
+module.exports.updateUser = (userId, newUsername, newPassword, databaseIds, callback) => {
     const query = `UPDATE users SET name = ?, password = ?, database_ids = ? WHERE id = ?`
-    const values = [newUsername, newPassword, databaseIds]
+    const values = [newUsername, newPassword, databaseIds, userId]
     pool.query(query, values, callback)
 }

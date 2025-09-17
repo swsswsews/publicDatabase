@@ -1,5 +1,5 @@
 //load model
-const User=null
+const model=require("../../database/model/users")
 
 //register user
 module.exports.registerUser=(req, res)=>{
@@ -26,13 +26,13 @@ module.exports.registerUser=(req, res)=>{
     }
 
     //sql
-    User.registerUser(username, password, callback)
+    model.registerUser(username, password, callback)
 }
 
 //login
 module.exports.loginUser=(req, res)=>{
     //input
-    const {username, password}=req.body
+    const {username, password}=req.query
 
     if(!username || !password){
         console.log("user route: login user: missing input")
@@ -52,7 +52,7 @@ module.exports.loginUser=(req, res)=>{
     }
 
     //sql
-    User.loginUser(username, password, callback)
+    model.loginUser(username, password, callback)
 }
 
 //delete
@@ -78,8 +78,7 @@ module.exports.deleteUser=(req, res)=>{
     }
 
     //sql
-    User.deleteUser(userId, callback)
-
+    model.deleteUser(userId, callback)
 }
 
 //update
@@ -106,5 +105,5 @@ module.exports.updateUser=(req, res)=>{
     }
 
     //sql
-    User.updateUser(userId, newUsername, newPassword, databaseIds, callback)
+    model.updateUser(userId, newUsername, newPassword, databaseIds, callback)
 }
