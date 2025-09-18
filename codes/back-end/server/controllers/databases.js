@@ -55,7 +55,7 @@ module.exports.getDatabase=(req, res)=>{
 //edit database
 module.exports.editDatabase=(req, res)=>{
     const {databaseId, tables, columns} = req.body
-    if(!databaseId || !tables || !columns){
+    if(!databaseId){
         console.log("database route: editDatabase: Missing input")
         res.status(400).json({message: "Missing input"})
         return
