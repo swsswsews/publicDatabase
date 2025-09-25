@@ -110,7 +110,7 @@ module.exports.editContent={
         //get database name
         const databaseName=model.getDatabaseName(databaseId, callback)
 
-        model.addTable(databaseName, tableName, callback)
+        model.editContent.addTable(databaseName, tableName, callback)
     },
 
     //delete table
@@ -137,7 +137,7 @@ module.exports.editContent={
         //get database name
         const databaseName=model.getDatabaseName(databaseId, callback)
 
-        model.deleteTable(databaseName, tableName, callback)
+        model.editContent.deleteTable(databaseName, tableName, callback)
     },
 
     //add column
@@ -164,7 +164,7 @@ module.exports.editContent={
         //get database name
         const databaseName=model.getDatabaseName(databaseId, callback)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 
-        model.addColumn(databaseName, tableName, columnName, columnType, callback)
+        model.editContent.addColumn(databaseName, tableName, columnName, columnType, callback)
     },
 
     //delete column
@@ -191,12 +191,12 @@ module.exports.editContent={
         //get database name
         const databaseName=model.getDatabaseName(databaseId, callback)
 
-        model.deleteColumn(databaseName, tableName, columnName, callback)
+        model.editContent.deleteColumn(databaseName, tableName, columnName, callback)
     },
 
     //add value
     addValue:(req, res)=>{
-        const {databaseId, tableName, columnName, value} = req.body
+        const {databaseId, tableName, columnName,value} = req.body
         if(!databaseId || !tableName || !columnName || !value){
             console.log("database route: editContent.addValue: Missing input")
             res.status(400).json({message: "Missing input"})
@@ -218,7 +218,7 @@ module.exports.editContent={
         //get database name
         const databaseName=model.getDatabaseName(databaseId, callback)
 
-        model.addValue(databaseName, tableName, columnName, value, callback)
+        model.editContent.addValue(databaseName, tableName, columnName, value, callback)
     },
 
     //delete value
@@ -245,10 +245,40 @@ module.exports.editContent={
         //get database name
         const databaseName=model.getDatabaseName(databaseId, callback)
 
-        model.deleteValue(databaseName, tableName, columnName, valueId, callback)
+        model.editContent.deleteValue(databaseName, tableName, columnName, valueId, callback)
+    },
+
+    //edit value
+    editValue:(req, res)=>{
+        //input
+        const {databaseId, tableName, columnName, oldValue, newValue} = req.body
+
+        if(!databaseId || !tableName || !columnName || !oldValue || !newValue){
+            console.log("database route: editContent.editValue: Missing input")
+            res.status(400).json({message: "Missing input"})
+            return
+        }
+
+        const callback=(err, result)=>{
+            if(err){
+                console.log("database route: editContent.editValue: Error in editing value", err)
+                res.status(500).json({message: "Error in editing value"})
+                return
+            }else{
+                console.log("database route: editContent.editValue: Successfully edited value")
+                res.status(200).json({message: "Successfully edited value"})
+                return
+            }
+        }
+
+        //get database name
+        const databaseName=model.getDatabaseName(databaseId, callback)
+
+        model.editContent.editValue(databaseName, tableName, columnName, oldValue, newValue, callback)
     }
 
 }
+
 
 //get data
 module.exports.getData=(req, res)=>{

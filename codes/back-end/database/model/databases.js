@@ -30,7 +30,7 @@ module.exports.getDatabase=(databaseId, callback)=>{
 */
 
 //display editable content
-module.exports.displayContent=(databaseId, callback)=>{
+module.exports.getEditableContent=(databaseId, callback)=>{
     const query=`
     SELECT * FROM information_schema.TABLES WHERE TABLE_SCHEMA = (SELECT name FROM userdatabase WHERE id = ?);
     `
@@ -97,15 +97,24 @@ module.exports.editContent={
         `
         const values=[null]
         pool.query(query, values, callback)
+    },
+
+    //edit value
+    editValue:(databaseName, tableName, columnName, oldValue, newValue, callback)=>{
+        const query=`
+        UPDATE \`${databaseName}.${tableName}\` SET \`${columnName}\` = ? WHERE \`${columnName}\` = ?;
+        `
+        const values=[newValue, oldValue]
+        pool.query(query, values, callback)
     }
 }
 
 //get data
 module.exports.getData=(databaseName, tableName, callback)=>{
     const query=`
-    SELECT * FROM \s\`;
+    SELECT * FROM \s\`${databaseName}.${tableName}\`;
     `
-    pool.query(query, [databaseId], callback)
+    pool.query(query, [null], callback)
 }
 /*
 ==========================================================contents management========================================================
