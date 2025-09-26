@@ -21,7 +21,7 @@ module.exports.addDatabase=(req, res)=>{
         }else{
             console.log("database route: addDatabase: Successfully added database")
 
-            res.status(200).json({message: "Successfully added database", databasename: safeName})
+            res.status(200).json({message: "Successfully added database", databasename: name})
             return
         }
     }
