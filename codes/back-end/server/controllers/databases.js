@@ -12,7 +12,6 @@ module.exports.addDatabase=(req, res)=>{
         return
     }
 
-    const safeName = name.replace(/[^a-zA-Z0-9_]/g, '')
 
     const callback=(err, result)=>{
         if(err){
@@ -28,7 +27,7 @@ module.exports.addDatabase=(req, res)=>{
         }
     }
 
-    model.addDatabase(safeName, ownerId, callback)
+    model.addDatabase(name, ownerId, callback)
 }
 
 //get database
