@@ -319,9 +319,6 @@ module.exports.deleteDatabase=(req, res)=>{
         return
     }
 
-    //prove ts user has this database
-    secureModule.userAthority(req.body.userId, databaseId)
-
     const callback=(err, result)=>{
         if(err){
             console.log("database route: deleteDatabase: Error in deleting database", err)
