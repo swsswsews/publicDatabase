@@ -12,7 +12,6 @@ module.exports.addDatabase=(req, res)=>{
         return
     }
 
-
     const callback=(err, result)=>{
         if(err){
             console.log("database route: addDatabase: Error in adding database", err)
