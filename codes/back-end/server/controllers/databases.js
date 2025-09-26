@@ -331,5 +331,7 @@ module.exports.deleteDatabase=(req, res)=>{
         }
     }
 
-    model.deleteDatabase(databaseId, callback)
+    const databaseName= model.getDatabaseName(databaseId, callback)
+
+    model.deleteDatabase(databaseName, callback)
 }
