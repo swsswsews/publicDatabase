@@ -78,7 +78,9 @@ module.exports.getEditableContent=(req, res)=>{
         }
 }
 
-    model.getEditableContent(databaseId, callback)
+    const databaseName= model.getDatabaseName(databaseId, callback)
+
+    model.getEditableContent(databaseName, callback)
 }
 
 //edit
@@ -301,8 +303,11 @@ module.exports.getData=(req, res)=>{
         }
     }
 
+    //get database name
+    const databaseName=model.getDatabaseName(databaseId, callback)
+
     //query
-    model.getData(databaseId, callback)
+    model.getData(databaseName, callback)
 }
 
 /*
