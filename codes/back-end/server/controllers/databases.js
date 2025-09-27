@@ -59,8 +59,8 @@ module.exports.getDatabase=(req, res)=>{
 
 //display editable content
 module.exports.getEditableContent=(req, res)=>{
-    const {databaseId}=req.body
-    if(!databaseId){
+    const {databaseName}=req.body
+    if(!databaseName){
         console.log("database route: getEditableContent: Missing input")
         res.status(400).json({message: "Missing input"})
         return
@@ -78,8 +78,6 @@ module.exports.getEditableContent=(req, res)=>{
         }
 }
 
-    const databaseName= model.getDatabaseName(databaseId, callback)
-
     model.getEditableContent(databaseName, callback)
 }
 
@@ -87,9 +85,9 @@ module.exports.getEditableContent=(req, res)=>{
 module.exports.editContent={
     //add table
     addTable:(req, res)=>{
-        const {databaseId, tableName} = req.body
+        const {databaseName, tableName} = req.body
 
-        if(!databaseId || !tableName){
+        if(!databaseName || !tableName){
             console.log("database route: editContent.addTable: Missing input")
             res.status(400).json({message: "Missing input"})
             return
@@ -107,16 +105,13 @@ module.exports.editContent={
             }
         }
 
-        //get database name
-        const databaseName=model.getDatabaseName(databaseId, callback)
-
         model.editContent.addTable(databaseName, tableName, callback)
     },
 
     //delete table
     deleteTable:(req, res)=>{
-        const {databaseId, tableName} = req.body
-        if(!databaseId || !tableName){
+        const {databaseName, tableName} = req.body
+        if(!databaseName || !tableName){
             console.log("database route: editContent.deleteTable: Missing input")
             res.status(400).json({message: "Missing input"})
             return
@@ -134,22 +129,18 @@ module.exports.editContent={
             }
         }
 
-        //get database name
-        const databaseName=model.getDatabaseName(databaseId, callback)
-
         model.editContent.deleteTable(databaseName, tableName, callback)
     },
 
     //add column
     addColumn:(req, res)=>{
-        const {databaseId, tableName, columnName, columnType} = req.body
-        if(!databaseId || !tableName || !columnName || !columnType){
+        const {databaseName, tableName, columnName, columnType} = req.body
+        if(!databaseName || !tableName || !columnName || !columnType){
             console.log("database route: editContent.addColumn: Missing input")
             res.status(400).json({message: "Missing input"})
             return
         }
-
-        const callback=(err, result)=>{
+         const callback=(err, result)=>{
             if(err){
                 console.log("database route: editContent.addColumn: Error in adding column", err)
                 res.status(500).json({message: "Error in adding column"})
@@ -161,16 +152,13 @@ module.exports.editContent={
             }
         }
 
-        //get database name
-        const databaseName=model.getDatabaseName(databaseId, callback)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-
         model.editContent.addColumn(databaseName, tableName, columnName, columnType, callback)
     },
 
     //delete column
     deleteColumn:(req, res)=>{
-        const {databaseId, tableName, columnName} = req.body
-        if(!databaseId || !tableName || !columnName){
+        const {databaseName, tableName, columnName} = req.body
+        if(!databaseName || !tableName || !columnName){
             console.log("database route: editContent.deleteColumn: Missing input")
             res.status(400).json({message: "Missing input"})
             return
@@ -188,16 +176,13 @@ module.exports.editContent={
             }
         }
 
-        //get database name
-        const databaseName=model.getDatabaseName(databaseId, callback)
-
         model.editContent.deleteColumn(databaseName, tableName, columnName, callback)
     },
 
     //add value
     addValue:(req, res)=>{
-        const {databaseId, tableName, columnName,value} = req.body
-        if(!databaseId || !tableName || !columnName || !value){
+        const {databaseName, tableName, columnName,value} = req.body
+        if(!databaseName || !tableName || !columnName || !value){
             console.log("database route: editContent.addValue: Missing input")
             res.status(400).json({message: "Missing input"})
             return
@@ -215,16 +200,13 @@ module.exports.editContent={
             }
         }
 
-        //get database name
-        const databaseName=model.getDatabaseName(databaseId, callback)
-
         model.editContent.addValue(databaseName, tableName, columnName, value, callback)
     },
 
     //delete value
     deleteValue:(req, res)=>{
-        const {databaseId, tableName, columnName, valueId} = req.body
-        if(!databaseId || !tableName || !columnName || !valueId){
+        const {databaseName, tableName, columnName, valueId} = req.body
+        if(!databaseName || !tableName || !columnName || !valueId){
             console.log("database route: editContent.deleteValue: Missing input")
             res.status(400).json({message: "Missing input"})
             return
@@ -242,18 +224,15 @@ module.exports.editContent={
             }
         }
 
-        //get database name
-        const databaseName=model.getDatabaseName(databaseId, callback)
-
         model.editContent.deleteValue(databaseName, tableName, columnName, valueId, callback)
     },
 
     //edit value
     editValue:(req, res)=>{
         //input
-        const {databaseId, tableName, columnName, oldValue, newValue} = req.body
+        const {databaseName, tableName, columnName, oldValue, newValue} = req.body
 
-        if(!databaseId || !tableName || !columnName || !oldValue || !newValue){
+        if(!databaseName || !tableName || !columnName || !oldValue || !newValue){
             console.log("database route: editContent.editValue: Missing input")
             res.status(400).json({message: "Missing input"})
             return
@@ -271,20 +250,16 @@ module.exports.editContent={
             }
         }
 
-        //get database name
-        const databaseName=model.getDatabaseName(databaseId, callback)
-
         model.editContent.editValue(databaseName, tableName, columnName, oldValue, newValue, callback)
     }
-
 }
 
 
 //get data
 module.exports.getData=(req, res)=>{
     //input
-    const {databaseId}=req.body
-    if(!databaseId){
+    const {databaseName}=req.body
+    if(!databaseName){
         console.log("database route: getData: Missing input")
         res.status(400).json({message: "Missing input"})
         return
@@ -303,9 +278,6 @@ module.exports.getData=(req, res)=>{
         }
     }
 
-    //get database name
-    const databaseName=model.getDatabaseName(databaseId, callback)
-
     //query
     model.getData(databaseName, callback)
 }
@@ -317,8 +289,8 @@ module.exports.getData=(req, res)=>{
 
 //delete database
 module.exports.deleteDatabase=(req, res)=>{
-    const {databaseId} = req.body
-    if(!databaseId){
+    const {databaseName} = req.body
+    if(!databaseName){
         console.log("database route: deleteDatabase: Missing input")
         res.status(400).json({message: "Missing input"})
         return
@@ -335,8 +307,6 @@ module.exports.deleteDatabase=(req, res)=>{
             return
         }
     }
-
-    const databaseName= model.getDatabaseName(databaseId, callback)
 
     model.deleteDatabase(databaseName, callback)
 }

@@ -130,3 +130,14 @@ module.exports.deleteDatabase=(databaseName, callback)=>{
     const values=[databaseName]
     pool.query(query, values, callback)
 }
+
+//get database name
+module.exports.getDatabaseName=(databaseId, callback)=>{
+    const query=`
+    SELECT name FROM userdatabase WHERE id = ?;
+    `
+
+    const values=[databaseId]
+
+    pool.query(query, values, callback)
+}
