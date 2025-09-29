@@ -9,7 +9,7 @@ const controller = require('../controllers/databases');
 router.post("/addDatabase", controller.addDatabase)
 
 //get database
-router.get("/getDatabase", controller.getDatabase)
+router.get("/getDatabase/:id", controller.getDatabase)
 
 /*
 ==========================================================contents management========================================================
