@@ -76,7 +76,7 @@ module.exports.getEditableContent=(req, res)=>{
             res.status(200).json({message: "Successfully got editable content", data: result})
             return
         }
-}
+    }
 
     model.getEditableContent(databaseName, callback)
 }
