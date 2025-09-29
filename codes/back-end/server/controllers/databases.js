@@ -59,8 +59,8 @@ module.exports.getDatabase=(req, res)=>{
 
 //display editable content
 module.exports.getEditableContent=(req, res)=>{
-    const {databaseName}=req.body
-    if(!databaseName){
+    const {databaseId}=req.body
+    if(!databaseId){
         console.log("database route: getEditableContent: Missing input")
         res.status(400).json({message: "Missing input"})
         return
@@ -78,7 +78,7 @@ module.exports.getEditableContent=(req, res)=>{
         }
     }
 
-    model.getEditableContent(databaseName, callback)
+    model.getEditableContent(databaseId, callback)
 }
 
 //edit
