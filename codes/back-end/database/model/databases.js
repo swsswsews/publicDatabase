@@ -45,7 +45,8 @@ module.exports.editContent={
     //add table
     addTable:(databaseName, tableName, callback)=>{
         const query=`
-        CREATE TABLE \`${databaseName}.${tableName}\` (
+        use \`${databaseName}\`;
+        CREATE TABLE \`${tableName}\` (
             id INT AUTO_INCREMENT PRIMARY KEY
         );
         `
