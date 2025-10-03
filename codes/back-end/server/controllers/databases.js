@@ -205,8 +205,8 @@ module.exports.editContent={
 
     //delete value
     deleteValue:(req, res)=>{
-        const {databaseName, tableName, columnName, valueId} = req.body
-        if(!databaseName || !tableName || !columnName || !valueId){
+        const {databaseName, tableName, valueId} = req.body
+        if(!databaseName || !tableName || !valueId){
             console.log("database route: editContent.deleteValue: Missing input")
             res.status(400).json({message: "Missing input"})
             return
@@ -224,7 +224,7 @@ module.exports.editContent={
             }
         }
 
-        model.editContent.deleteValue(databaseName, tableName, columnName, valueId, callback)
+        model.editContent.deleteValue(databaseName, tableName, valueId, callback)
     },
 
     //edit value
@@ -258,8 +258,10 @@ module.exports.editContent={
 //get data
 module.exports.getData=(req, res)=>{
     //input
-    const {databaseName}=req.body
-    if(!databaseName){
+    const databaseName=req.query.databaseName
+    const tableName=req.query.tableName
+
+    if(!databaseName || !tableName){
         console.log("database route: getData: Missing input")
         res.status(400).json({message: "Missing input"})
         return
@@ -279,7 +281,7 @@ module.exports.getData=(req, res)=>{
     }
 
     //query
-    model.getData(databaseName, callback)
+    model.getData(databaseName, tableName, callback)
 }
 
 /*

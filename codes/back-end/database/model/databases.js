@@ -57,7 +57,8 @@ module.exports.editContent={
     //delete table
     deleteTable:(databaseName, tableName, callback)=>{
         const query=`
-        DROP TABLE \`${databaseName}.${tableName}\`;
+        use \`${databaseName}\`;
+        DROP TABLE \`${tableName}\`;
         `
 
         pool.query(query, [null], callback)
@@ -66,7 +67,8 @@ module.exports.editContent={
     //add column
     addColumn:(databaseName, tableName, columnName, columnType, callback)=>{
         const query=`
-        ALTER TABLE \`${databaseName}.${tableName}\`
+        use \`${databaseName}\`;
+        ALTER TABLE \`${tableName}\`
         ADD COLUMN \`${columnName}\` ${columnType};
         `
 
@@ -76,7 +78,8 @@ module.exports.editContent={
     //delete column
     deleteColumn:(databaseName, tableName, columnName, callback)=>{
         const query=`
-        ALTER TABLE \`${databaseName}.${tableName}\`
+        use \`${databaseName}\`;
+        ALTER TABLE \`${tableName}\`
         DROP COLUMN \`${columnName}\`;
         `
         pool.query(query, [null], callback)
@@ -85,25 +88,28 @@ module.exports.editContent={
     //add value
     addValue:(databaseName, tableName, columnName, value, callback)=>{
         const query=`
-        INSERT INTO \`${databaseName}.${tableName}\` (\`${columnName}\`) VALUES (?);
+        use \`${databaseName}\`;
+        INSERT INTO \`${tableName}\` (\`${columnName}\`) VALUES (?);
         `
         const values=[value]
         pool.query(query, values, callback)
     },
 
     //delete value
-    deleteValue:(databaseName, tableName, columnName, value, callback)=>{
+    deleteValue:(databaseName, tableName, valueId, callback)=>{
         const query=`
-        DELETE FROM \`${databaseName}.${tableName}\` WHERE \`${columnName}\` = ?;
+        use \`${databaseName}\`;
+        DELETE FROM \`${tableName}\` WHERE id = ?;
         `
-        const values=[null]
+        const values=[valueId]
         pool.query(query, values, callback)
     },
 
     //edit value
     editValue:(databaseName, tableName, columnName, oldValue, newValue, callback)=>{
         const query=`
-        UPDATE \`${databaseName}.${tableName}\` SET \`${columnName}\` = ? WHERE \`${columnName}\` = ?;
+        use \`${databaseName}\`;
+        UPDATE \`${tableName}\` SET \`${columnName}\` = ? WHERE \`${columnName}\` = ?;
         `
         const values=[newValue, oldValue]
         pool.query(query, values, callback)
@@ -113,7 +119,8 @@ module.exports.editContent={
 //get data
 module.exports.getData=(databaseName, tableName, callback)=>{
     const query=`
-    SELECT * FROM \s\`${databaseName}.${tableName}\`;
+    use ${databaseName};
+    SELECT * FROM \`${tableName}\`;
     `
     pool.query(query, [null], callback)
 }
