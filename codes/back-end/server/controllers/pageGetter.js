@@ -1,4 +1,7 @@
 //load home page
+module.exports.loadHomePage = (req, res) => {
+    res.render('home');
+}
 
 //load register page
 
