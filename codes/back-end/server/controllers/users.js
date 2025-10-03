@@ -32,7 +32,7 @@ module.exports.registerUser=(req, res)=>{
 //login
 module.exports.loginUser=(req, res)=>{
     //input
-    const {username, password}=req.query
+    const {username, password}=req.body
 
     if(!username || !password){
         console.log("user route: login user: missing input")
