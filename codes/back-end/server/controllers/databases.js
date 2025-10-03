@@ -31,7 +31,7 @@ module.exports.addDatabase=(req, res)=>{
 
 //get database
 module.exports.getDatabase=(req, res)=>{
-    const databaseId= req.params.id
+    const {databaseId}= req.body
     if(!databaseId){
         console.log("database route: getDatabase: Missing input")
         res.status(400).json({message: "Missing input"})
@@ -258,8 +258,7 @@ module.exports.editContent={
 //get data
 module.exports.getData=(req, res)=>{
     //input
-    const databaseName=req.query.databaseName
-    const tableName=req.query.tableName
+    const {databaseName, tableName}=req.body
 
     if(!databaseName || !tableName){
         console.log("database route: getData: Missing input")

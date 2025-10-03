@@ -9,14 +9,14 @@ const controller = require('../controllers/databases');
 router.post("/addDatabase", controller.addDatabase)
 
 //get database
-router.get("/getDatabase/:id", controller.getDatabase)
+router.post("/getDatabase", controller.getDatabase)
 
 /*
 ==========================================================contents management========================================================
 */
 
 //display editable content
-router.get("/getEditableContent", controller.getEditableContent)
+router.post("/getEditableContent", controller.getEditableContent)
 
 //add table
 router.post("/addTable", controller.editContent.addTable)
@@ -40,7 +40,7 @@ router.delete("/deleteValue", controller.editContent.deleteValue)
 router.put("/editValue", controller.editContent.editValue)
   
 //get data
-router.get("/getData", controller.getData)
+router.post("/getData", controller.getData)
 
 /*
 ==========================================================contents management========================================================
