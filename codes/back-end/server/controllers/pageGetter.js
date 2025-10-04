@@ -8,17 +8,20 @@ module.exports.loadRegisterPage = (req, res) => {
     res.sendFile('../../../front-end/html/registerPage.ejs');
 }
 
-//load login page
+//load login pages
 module.exports.loadLoginPage = (req, res) => {
     res.sendFile('../../../front-end/html/loginPage.ejs');
 }
 
 //load profile
 module.exports.loadProfilePage = (req, res) => {
-    res.render('../../../front-end/html/profilePage.ejs');
+    const username = req.user
+    const password = req.user
+    res.render('../../../front-end/html/profilePage.ejs', { username: username, password:password});
 }
 
 //load databaseInfo page
 module.exports.loadDatabaseInfoPage = (req, res) => {
-    res.render('../../../front-end/html/databaseInfoPage.ejs');
+    const userId = req.user
+    res.render('../../../front-end/html/databaseInfoPage.ejs', { userId: userId});
 }
