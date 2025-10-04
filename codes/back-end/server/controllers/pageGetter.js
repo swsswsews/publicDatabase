@@ -13,7 +13,7 @@ module.exports.loadLoginPage = (req, res) => {
     res.sendFile('../../../front-end/html/loginPage.ejs');
 }
 
-//load profile
+//load profiled
 module.exports.loadProfilePage = (req, res) => {
     const username = req.user
     const password = req.user
